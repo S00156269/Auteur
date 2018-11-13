@@ -12,16 +12,7 @@
     position: fixed;
     z-index: 2;
   }
-  
-  h1.app-name {
-    margin-left: 8px;
-  }
-  
-  .title {
-    background-color: #212121;
-    font-weight: 600;
-    padding: 0px 10px 0px 10px;
-  }
+
   .sidenav-container {
     flex: 1;
   }
@@ -30,3 +21,6 @@
     flex: 1 0 auto;
   }
   
+  .space-left {
+    margin-left: 10px;
+  }
