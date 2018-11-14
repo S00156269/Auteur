@@ -42,7 +42,11 @@
       </mat-sidenav>
 
       <mat-sidenav-content>
-
+        <mat-grid-list cols="4" rowHeight="1:2" class="nopadding">
+          <mat-grid-tile *ngFor="let films of popularFilms">
+              <img class='Poster' id="{{films.original_title}}" [src]="getImgUrl(films.poster_path)">
+          </mat-grid-tile>
+        </mat-grid-list>
       </mat-sidenav-content>
     </mat-sidenav-container>
   </div>
