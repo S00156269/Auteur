@@ -7,19 +7,6 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
-
-import {
-   MatSidenavModule,
-   MatToolbarModule,
-   MatListModule,
-   MatIconModule,
-   MatButtonModule,
-   MatFormFieldModule,
-   MatInputModule,
-   MatGridListModule,
-   MatCardModule
-  } from '@angular/material';
-  
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -36,16 +23,7 @@ import { HomeComponent } from './home/home.component';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule ,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatListModule,
-    MatIconModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatGridListModule,
-    MatCardModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
