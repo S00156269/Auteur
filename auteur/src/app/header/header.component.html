@@ -1,0 +1,20 @@
+<div class="container" [class.is-mobile]="mobileQuery.matches">
+  <mat-toolbar color="accent" class="toolbar">
+    <mat-toolbar-row>
+      <a routerLink="/" class="bold box" aria-label="home link">Auteur</a>
+      <span class="fill-remaining-space"></span>
+      <input matInput class="search" aria-label="search">
+      <button mat-button>
+        <mat-icon matSuffix>search</mat-icon>
+      </button>
+
+      <a routerLink="/register" class="box">
+        <span class="bold">Sign Up</span>
+      </a>
+      <a routerLink="/login" class="space-left box">
+        <span class="bold">Log In</span>
+      </a>
+
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>

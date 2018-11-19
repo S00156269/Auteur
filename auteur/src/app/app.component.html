@@ -9,47 +9,7 @@
 </head>
 
 <body>
-  <div class="container" [class.is-mobile]="mobileQuery.matches">
-    <mat-toolbar color="accent" class="toolbar">
-      <mat-toolbar-row>
-        <button mat-icon-button (click)="snav.toggle()">
-          <mat-icon>menu</mat-icon>
-        </button>
-        <span class="bold title">Auteur</span>
-        <span class="fill-remaining-space"></span>
-        <mat-form-field class="search">
-          <mat-label>Search</mat-label>
-          <input matInput placeholder="Favorite food"/>
-          <button mat-button><mat-icon matSuffix>search</mat-icon></button>
-        </mat-form-field>
-        <span class="fill-remaining-space"></span>
-
-        <button mat-raised-button color="primary">
-          <span class="bold">Sign Up</span>
-        </button>
-        <button class="space-left" mat-raised-button color="primary">
-          <span class="bold">Log In</span>
-        </button>
-      </mat-toolbar-row>
-    </mat-toolbar>
-
-    <mat-sidenav-container class="sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
-      <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
-        fixedTopGap="56">
-        <mat-nav-list>
-          <a mat-list-item routerLink=".">Profile</a>
-        </mat-nav-list>
-      </mat-sidenav>
-
-      <mat-sidenav-content>
-        <mat-grid-list cols="5" rowHeight="9:16" >
-          <mat-grid-tile *ngFor="let films of popularFilms">
-              <img class='Poster' id="{{films.original_title}}" [src]="getImgUrl(films.poster_path)" width="auto">
-          </mat-grid-tile>
-        </mat-grid-list>
-      </mat-sidenav-content>
-    </mat-sidenav-container>
-  </div>
+  <app-home></app-home>
 </body>
 
 </html>

@@ -1,8 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 
-.title {
+body {
+    margin: 0;
+}
+
+.box {
     padding: 0px 10px 0px 10px;
+    color: white;
+    text-decoration: none;
     background-color: #212121;
+}
+
+.title {
+    font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
 }
 
 .bold {
@@ -11,8 +21,4 @@
 
 .fill-remaining-space {
     flex: 1 1 auto;
-}
-
-.search {
-    flex: 1;
 }

@@ -1,0 +1,18 @@
+<mat-card>
+    <form class="container"> 
+        <span class="bold">Login</span>
+        <mat-form-field>
+          <label for="email">Email</label>
+          <input matInput type="text" name="email" required>
+        </mat-form-field>
+        <mat-form-field>
+          <label for="password">Password</label>
+          <input matInput type="password" name="password" required>
+        </mat-form-field>
+      
+        <div>
+          <a mat-raised-button (click)="login()">Login</a>
+          <a mat-raised-button [routerLink]="['/register']">Register</a>
+        </div>
+      </form>
+</mat-card>
