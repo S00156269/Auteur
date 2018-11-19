@@ -17,19 +17,19 @@
         </button>
         <span class="bold title">Auteur</span>
         <span class="fill-remaining-space"></span>
+        <mat-form-field class="search">
+          <mat-label>Search</mat-label>
+          <input matInput placeholder="Favorite food"/>
+          <button mat-button><mat-icon matSuffix>search</mat-icon></button>
+        </mat-form-field>
+        <span class="fill-remaining-space"></span>
+
         <button mat-raised-button color="primary">
           <span class="bold">Sign Up</span>
         </button>
         <button class="space-left" mat-raised-button color="primary">
           <span class="bold">Log In</span>
         </button>
-      </mat-toolbar-row>
-      <mat-toolbar-row>
-        <mat-form-field class="search">
-          <mat-label>Search for films, TV shows, actors or reviewers...</mat-label>
-          <input matInput placeholder="Search">
-          <mat-icon matSuffix>search</mat-icon>
-        </mat-form-field>
       </mat-toolbar-row>
     </mat-toolbar>
 
@@ -42,9 +42,9 @@
       </mat-sidenav>
 
       <mat-sidenav-content>
-        <mat-grid-list cols="4" rowHeight="1:2" class="nopadding">
+        <mat-grid-list cols="5" rowHeight="9:16" >
           <mat-grid-tile *ngFor="let films of popularFilms">
-              <img class='Poster' id="{{films.original_title}}" [src]="getImgUrl(films.poster_path)">
+              <img class='Poster' id="{{films.original_title}}" [src]="getImgUrl(films.poster_path)" width="auto">
           </mat-grid-tile>
         </mat-grid-list>
       </mat-sidenav-content>
