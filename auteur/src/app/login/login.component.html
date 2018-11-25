@@ -1,12 +1,14 @@
-    <form class="container"> 
-        <span class="bold">Login</span>
-          <label for="email">Email</label>
-          <input type="text" name="email" required>
-          <label for="password">Password</label>
-          <input type="password" name="password" required>
-      
-        <div>
-          <a (click)="login()">Login</a>
-          <a [routerLink]="['/register']">Register</a>
-        </div>
-      </form>
+<div class="l-content">
+    <form class="pure-form pure-form-stacked">
+        <fieldset>
+    
+            <label for="email">Your Email</label>
+            <input id="email" type="email" placeholder="Your Email">
+    
+            <label for="password">Your Password</label>
+            <input id="password" type="password" placeholder="Your Password">
+    
+            <button type="submit" class="pure-button">Sign Up</button>
+        </fieldset>
+    </form>
+</div>
