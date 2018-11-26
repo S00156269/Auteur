@@ -1,14 +1,24 @@
-<div class="l-content">
-    <form class="pure-form pure-form-stacked">
-        <fieldset>
-    
-            <label for="email">Your Email</label>
-            <input id="email" type="email" placeholder="Your Email">
-    
-            <label for="password">Your Password</label>
-            <input id="password" type="password" placeholder="Your Password">
-    
-            <button type="submit" class="pure-button">Sign Up</button>
-        </fieldset>
-    </form>
+<div class="d-flex justify-content-center mt-sm-5">
+    <div class="card w-50">
+        <div class="card-body">
+            <h2 class="card-title">Login</h2>
+            <h6 class="card-subtitle mb-2 text-muted">Login to Auteur with your email and password.</h6>
+            <form>
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Email address">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password">
+                </div>
+                <div class="card-link">
+                    <a href="reset.html">Forgot password?</a>
+                </div>
+                <div class="d-flex justify-content-sm-between mt-sm-3">
+                    <button type="submit" class="btn btn-success">Login</button>
+                    <a routerLink="/register" class="btn btn-secondary">Register</a>
+                </div>
+            </form>
+        </div>
+
+    </div>
 </div>

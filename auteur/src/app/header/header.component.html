@@ -1,11 +1,24 @@
-<div class="header">
-  <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
-    <a class="pure-menu-heading" href="">Auteur</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" routerLink="/home">Auteur</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <ul class="pure-menu-list">
-      <li class="pure-menu-item"><a routerLink="/home" class="pure-menu-link">Home</a></li>
-      <li class="pure-menu-item"><a routerLink="/login" class="pure-menu-link">Log In</a></li>
-      <li class="pure-menu-item"><a routerLink="/register" class="pure-menu-link">Register</a></li>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/home">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/login">Log in</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/register">Register</a>
+      </li>
     </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search films..." aria-label="Search">
+      <button class="btn btn btn-light my-2 my-sm-0" type="submit">Search</button>
+    </form>
   </div>
-</div>
+</nav>
