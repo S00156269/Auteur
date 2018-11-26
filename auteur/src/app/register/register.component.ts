@@ -15,28 +15,25 @@ export class RegisterComponent {
   email: string;
   password: string;
   confirmEmail: string;
-  uid: string;
   public invalid: boolean;
+  error: string;
 
-  constructor(public authService: AuthService, public afa: AngularFireAuth, public router: Router) {
+  constructor(public authService: AuthService, public router: Router) {
     this.invalid = false;
   }
 
   validate() {
     if (this.email == this.confirmEmail) {
       this.invalid = false;
-      this.signup();
+      this.signUp();
     }
     else {
       this.invalid = true;
     }
   }
 
-  signup() {
-    this.authService.signup(this.email, this.password);
-    this.email = this.password = '';
+  signUp() {
+    this.authService.signup(this.email, this.password).catch(err => { this.error = err });
     //this.router.navigate(['editprofile']);
   }
-
-
 }

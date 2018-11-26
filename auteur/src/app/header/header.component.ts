@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { TmdbService } from 'src/shared/tmdb.service';
+import { AuthService } from 'src/shared/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -11,6 +12,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   title = 'Auteur';
   mobileQuery: MediaQueryList;
   popularFilms: any[];
+  error: string;
 
   getImgUrl(value)
   {    
@@ -19,7 +21,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private tmdbService: TmdbService) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private tmdbService: TmdbService, public authService: AuthService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -33,5 +35,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
+
+  logOut() {
+    this.authService.logout().catch(err => { this.error = err });
   }
 }

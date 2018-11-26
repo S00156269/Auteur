@@ -7,37 +7,25 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 
 export class AuthService {
+  // Error handling is done by returning promises and catching errors where they're called,
+  // to easily show error messages to the user.
+  
   user: Observable<firebase.User>;
   error: string;
+
   constructor(private firebaseAuth: AngularFireAuth) {
     this.user = firebaseAuth.authState;
   }
 
   signup(email: string, password: string) {
-    this.firebaseAuth
-      .auth
-      .createUserWithEmailAndPassword(email, password).then(function() {
-        // Success
-      }).catch(err => {
-        // Error
-        this.error = err.message;
-      });
+    return this.firebaseAuth.auth.createUserWithEmailAndPassword(email, password);
   }
 
   login(email: string, password: string) {
-    this.firebaseAuth.auth.signInWithEmailAndPassword(email, password).then(function() {
-      // Success.
-    }).catch(err => {
-      //Error
-    this.error = err.message
-  });
+    return this.firebaseAuth.auth.signInWithEmailAndPassword(email, password);
   }
 
   logout() {
-    this.firebaseAuth.auth.signOut().then(function() {
-      // Sign-out successful.
-    }).catch(err => {
-      this.error = err.message
-    });
+    return this.firebaseAuth.auth.signOut();
   }
 }
