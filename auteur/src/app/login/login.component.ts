@@ -16,6 +16,10 @@ export class LoginComponent {
   constructor(public authService: AuthService, public router: Router) {}
 
   logIn() {
-    this.authService.login(this.email, this.password).catch(err => { this.error = err });
+    this.authService.login(this.email, this.password)
+    .then(d => {
+      this.router.navigate(['/profile']);
+    })
+    .catch(err => { this.error = err });
   }
 }

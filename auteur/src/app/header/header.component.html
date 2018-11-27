@@ -1,10 +1,14 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" routerLink="/home">Auteur</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <a class="navbar-brand" routerLink="/home">
+    <img src="assets/icon-white.png" width="30" height="30" class="d-inline-block align-top" >
+    Auteur
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link" routerLink="/home">Home</a>
@@ -16,15 +20,15 @@
         <a class="nav-link" routerLink="/register" *ngIf="!(authService.user | async)">Register</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" *ngIf="(authService.user | async)">Profile</a>
+        <a class="nav-link" routerLink="/profile" *ngIf="(authService.user | async)">Profile</a>
       </li>
       <li class="nav-item">
-          <a class="nav-link" *ngIf="(authService.user | async)" (click)="logOut()">Log out</a>
-        </li>
+        <a class="nav-link" *ngIf="(authService.user | async)" (click)="logOut()">Log out</a>
+      </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search films..." aria-label="Search">
-      <button class="btn btn btn-light my-2 my-sm-0" type="submit">Search</button>
+      <input class="form-control mr-sm-2" type="search" placeholder="Search films, tv...">
+      <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
     </form>
   </div>
 </nav>

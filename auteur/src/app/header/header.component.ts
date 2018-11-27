@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
-import { MediaMatcher } from '@angular/cdk/layout';
 import { TmdbService } from 'src/shared/tmdb.service';
 import { AuthService } from 'src/shared/auth.service';
 
@@ -13,19 +12,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   mobileQuery: MediaQueryList;
   popularFilms: any[];
   error: string;
-
-  getImgUrl(value)
-  {    
-    return "https://image.tmdb.org/t/p/w1280" + value;
-  }
+ 
+  navbarOpen = false;
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private tmdbService: TmdbService, public authService: AuthService) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
-  }
+  constructor(private tmdbService: TmdbService, public authService: AuthService) {}
 
   ngOnInit(): void {
     this.tmdbService.getPopularFilms().subscribe(films => {
@@ -35,6 +27,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
+
+  toggleNavbar() {
+    this.navbarOpen = !this.navbarOpen;
+  }
+  
+  getImgUrl(value) {    
+    return "https://image.tmdb.org/t/p/w1280" + value;
   }
 
   logOut() {

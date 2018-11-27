@@ -17,6 +17,9 @@
                     <label for="password">Password</label>
                     <input type="password" name="password" class="form-control" placeholder="Enter password" required [(ngModel)]="password">
                 </div>
+                <div *ngIf="error" class="alert alert-danger">
+                    {{error}}
+                  </div>
                 <div class="d-flex justify-content-sm-between mt-sm-3">
                     <a routerLink="/register" class="btn btn-secondary" (click)='validate()'>Register</a>
                 </div>
