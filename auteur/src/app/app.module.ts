@@ -16,6 +16,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { ReviewComponent } from './review/review.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     HomeComponent,
     ProfileComponent,
     EditProfileComponent,
+    ReviewComponent,
   ],
   imports: [
     BrowserModule,

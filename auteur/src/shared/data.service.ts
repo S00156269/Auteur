@@ -26,4 +26,9 @@ export class DataService {
   getUser(iuid): Observable<any> {
     return this.http.get('https://auteur-1541508408043.firebaseio.com/users/' + iuid + '.json');
   }
+  // Create a review
+  createReview(data, uid, filmID) {
+    this.http.patch('https://auteur-1541508408043.firebaseio.com/users/' + uid + ".json", data).subscribe(res => { console.log(res) });
+    this.http.patch('https://auteur-1541508408043.firebaseio.com/films/' + filmID + ".json", data).subscribe(res => { console.log(res) });
+}
 }
