@@ -9,6 +9,7 @@ import { API_KEY } from '../assets/api'
 
 export class TmdbService {
   private _tmdbUrl: string = 'https://api.themoviedb.org/3/';
+  private _tmdbUrlSingle: string = 'https://api.themoviedb.org/3/movie/';
 
   constructor(private _http: HttpClient) { }
 
@@ -16,9 +17,17 @@ export class TmdbService {
     return this._http.get<any>(this._tmdbUrl + 'movie/popular?' + API_KEY + '&language=en-US&page=1');
   }
 
-  searchTMDB(term) : Observable<any>{
+  public getSingleFilm(value): Observable<any> {
+    return this._http.get<any>(this._tmdbUrlSingle + value + API_KEY);
+  }
+
+  public searchTMDB(term): Observable<any> {
     return this._http.get<any>(this._tmdbUrl + 'search/movie?' + API_KEY + '&language=en-US&query=' + term + '&page=1&include_adult=false')
-    }
+  }
+
+  public getImgUrl(value) {
+    return this._http.get<any>("https://image.tmdb.org/t/p/w1280" + value);
+  }
 
   private handleError(err: HttpErrorResponse) {
     console.log(err.message);

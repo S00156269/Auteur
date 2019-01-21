@@ -34,13 +34,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   toggleNavbar() {
     this.navbarOpen = !this.navbarOpen;
   }
-  
-  getImgUrl(value) {    
-    return "https://image.tmdb.org/t/p/w1280" + value;
-  }
 
   search() {
-    console.log(this.searchTerm);
     this.router.navigate(['/search'], { queryParams: { term: this.searchTerm } });
   }
 

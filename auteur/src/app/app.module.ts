@@ -18,6 +18,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ReviewComponent } from './review/review.component';
 import { SearchComponent } from './search/search.component';
+import { FilmComponent } from './film/film.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { SearchComponent } from './search/search.component';
     EditProfileComponent,
     ReviewComponent,
     SearchComponent,
+    FilmComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,8 @@
-<div class="wrapper" *ngFor="let result of searchResults">
-  <img class="card-img-top" [src]="getPosterUrl(result.poster_path)" alt="Image for film or tv show">
-  <div class="card-body" id="{{result.original_title}}"></div>
+<div class="wrapper">
+  <div class="card-columns">
+    <div class="card clickable" *ngFor="let result of searchResults" (click)="viewFilm(result.id)">
+        <img class="card-img-top" src="{{result.url}}" alt="Image for film or tv show" >
+        <div class="card-body" id="{{result.original_title}}">{{result.original_title}}</div>
+    </div>
+  </div>
 </div>
