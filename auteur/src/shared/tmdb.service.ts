@@ -16,4 +16,12 @@ export class TmdbService {
     return this._http.get<any>(this._tmdbUrl + 'movie/popular?' + API_KEY + '&language=en-US&page=1');
   }
 
+  searchTMDB(term) : Observable<any>{
+    return this._http.get<any>(this._tmdbUrl + 'search/movie?' + API_KEY + '&language=en-US&query=' + term + '&page=1&include_adult=false')
+    }
+
+  private handleError(err: HttpErrorResponse) {
+    console.log(err.message);
+    return Observable.throw(err.message);
+  }
 }

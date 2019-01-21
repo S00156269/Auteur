@@ -1,3 +1,4 @@
-<p>
-  search works!
-</p>
+<div class="wrapper" *ngFor="let result of searchResults">
+  <img class="card-img-top" [src]="getPosterUrl(result.poster_path)" alt="Image for film or tv show">
+  <div class="card-body" id="{{result.original_title}}"></div>
+</div>

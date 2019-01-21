@@ -13,7 +13,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   mobileQuery: MediaQueryList;
   popularFilms: any[];
   error: string;
- 
+  searchTerm: string;
+
   navbarOpen = false;
 
   private _mobileQueryListener: () => void;
@@ -38,9 +39,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     return "https://image.tmdb.org/t/p/w1280" + value;
   }
 
-  search(searchTerm) {
-    this.router.navigate(['/search'], { queryParams: { Title: searchTerm } });
-
+  search() {
+    console.log(this.searchTerm);
+    this.router.navigate(['/search'], { queryParams: { term: this.searchTerm } });
   }
 
   logOut() {
