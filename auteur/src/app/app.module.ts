@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ReviewComponent } from './review/review.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ReviewComponent } from './review/review.component';
     ProfileComponent,
     EditProfileComponent,
     ReviewComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,

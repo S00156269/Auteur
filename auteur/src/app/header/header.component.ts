@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { TmdbService } from 'src/shared/tmdb.service';
 import { AuthService } from 'src/shared/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -17,7 +18,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private _mobileQueryListener: () => void;
 
-  constructor(private tmdbService: TmdbService, public authService: AuthService) {}
+  constructor(private tmdbService: TmdbService, private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.tmdbService.getPopularFilms().subscribe(films => {
@@ -35,6 +36,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   
   getImgUrl(value) {    
     return "https://image.tmdb.org/t/p/w1280" + value;
+  }
+
+  search(searchTerm) {
+    this.router.navigate(['/search'], { queryParams: { Title: searchTerm } });
+
   }
 
   logOut() {
