@@ -1,7 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { API_KEY } from '../assets/api'
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,15 +14,15 @@ export class TmdbService {
   constructor(private _http: HttpClient) { }
 
   public getPopularFilms(): Observable<any> {
-    return this._http.get<any>(this._tmdbUrl + 'movie/popular?' + API_KEY + '&language=en-US&page=1');
+    return this._http.get<any>(this._tmdbUrl + 'movie/popular?' + environment.tmdbAPI + '&language=en-US&page=1');
   }
 
   public getSingleFilm(value): Observable<any> {
-    return this._http.get<any>(this._tmdbUrlSingle + value + API_KEY);
+    return this._http.get<any>(this._tmdbUrlSingle + value + environment.tmdbAPI);
   }
 
   public searchTMDB(term): Observable<any> {
-    return this._http.get<any>(this._tmdbUrl + 'search/movie?' + API_KEY + '&language=en-US&query=' + term + '&page=1&include_adult=false')
+    return this._http.get<any>(this._tmdbUrl + 'search/movie?' + environment.tmdbAPI + '&language=en-US&query=' + term + '&page=1&include_adult=false')
   }
 
   public getImgUrl(value) {
