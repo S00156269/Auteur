@@ -6,12 +6,15 @@ import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SearchComponent } from './search/search.component';
 import { FilmComponent } from './film/film.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { AuthService } from 'src/shared/auth.service';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent},
-  { path: 'profile', component: ProfileComponent},
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthService]},
+  { path: 'edit-profile', component: EditProfileComponent, canActivate: [AuthService]},
   { path: 'search', component: SearchComponent},
   { path: 'film', component: FilmComponent},
   { path: '',   redirectTo: '/home', pathMatch: 'full' },

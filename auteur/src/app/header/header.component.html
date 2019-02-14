@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" routerLink="/home">
-    <img src="assets/icon-white.png" width="30" height="30" class="d-inline-block align-top" >
+    <img src="./assets/favicon.png" width="30" height="30" class="d-inline-block align-top" >
     Auteur
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -14,21 +14,21 @@
         <a class="nav-link" routerLink="/home">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/login" *ngIf="!(authService.user | async)">Log in</a>
+        <a class="nav-link" routerLink="/login" *ngIf="!isLoggedIn()">Log in</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/register" *ngIf="!(authService.user | async)">Register</a>
+        <a class="nav-link" routerLink="/register" *ngIf="!isLoggedIn()">Register</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/profile" *ngIf="(authService.user | async)">Profile</a>
+        <a class="nav-link" routerLink="/profile" *ngIf="isLoggedIn()">Profile</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" *ngIf="(authService.user | async)" (click)="logOut()">Log out</a>
+        <a class="nav-link" *ngIf="isLoggedIn()" (click)="logOut()">Log out</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" name="searchBar" type="search" placeholder="Search films, tv..." [(ngModel)]="searchTerm" required>
-      <button class="btn btn-outline-light my-2 my-sm-0" (click)="search()" type="submit">Search</button>
+      <button class="btn btn-outline-dark my-2 my-sm-0" (click)="search()" type="submit">Search</button>
     </form>
   </div>
 </nav>

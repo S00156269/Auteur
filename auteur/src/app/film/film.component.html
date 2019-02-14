@@ -1,9 +1,41 @@
-<div id="movie-content">
-    <h2>{{film.original_title}}</h2>
-    <h3>Plot:</h3>
-    <p>{{film.overview}}</p>
-    <h3>Release Date:</h3>
-    <p>{{film.release_date}}</p>
-    <h3>Voting:</h3>
-    <p>{{film.vote_average}}</p>
+<div class="container h-100">
+    <div class="row align-items-center">
+        <div class="col-md-6 card" *ngIf="loaded">
+            <div class="ml-2">
+
+                <img class="card-img-top" src="{{film.url}}" alt="Image for film or tv show">
+                <div class="card-body">
+                    <h4 class="card-title">{{film.original_title}} - {{film.vote_average}}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">{{film.release_date}}</h6>
+                    <p class="card-text">
+                        {{film.overview}}
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6 card" *ngIf="loaded">
+            <div class="ml-2">
+                <div class="card-body">
+                    <h4 class="card-title">Write a review for {{film.original_title}}.</h4>
+                    <form>
+                        <div class="form-group">
+                            <label for="reviewContent"></label>
+                            <textarea type="text" name="reviewContent" class="form-control review" placeholder="Enter review content"
+                                [(ngModel)]="reviewContent" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="reviewRating">Rating</label>
+                            <input type="text" name="reviewRating" class="form-control" placeholder="Rating (out of 10)"
+                                [(ngModel)]="reviewRating" required>
+                        </div>
+                        <div class="d-flex justify-content-sm-between mt-sm-3">
+                            <button type="submit" class="btn btn-success" (click)='createReview()'>Finish review</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

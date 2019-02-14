@@ -1,0 +1,20 @@
+.container {
+    max-width: 800px;
+    padding: 2vh;
+
+}
+
+.card {
+    max-width: 300px;
+    padding: 2vh;
+
+}
+
+.review{
+    height: 200px;
+}
+
+.col {
+    padding: 2vh;
+
+}

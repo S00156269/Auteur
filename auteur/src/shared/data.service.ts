@@ -30,5 +30,13 @@ export class DataService {
   createReview(data, uid, filmID) {
     this.http.patch('https://auteur-1541508408043.firebaseio.com/users/' + uid + ".json", data).subscribe(res => { console.log(res) });
     this.http.patch('https://auteur-1541508408043.firebaseio.com/films/' + filmID + ".json", data).subscribe(res => { console.log(res) });
-}
+  }
+  // Get all reviews for specific film
+  getReviewsForFilm(filmID): Observable<any> {
+    return this.http.get('https://auteur-1541508408043.firebaseio.com/films/' + filmID + "/Reviews" + ".json");
+  }
+  // Get users' reviews
+  getReviewsForProfile(userID): Observable<any> {
+    return this.http.get('https://auteur-1541508408043.firebaseio.com/users/' + userID + "/Reviews" + ".json");
+  }
 }

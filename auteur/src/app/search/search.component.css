@@ -1,6 +1,7 @@
-/* .wrapper {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  column-gap: 10px;
-  row-gap: 1em;
-}*/
+.card {
+  max-width: 350px;
+}
+
+.container{ 
+  margin-top: 3vh;
+}
