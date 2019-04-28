@@ -1,24 +1,25 @@
-<div class="justify-content-start m-sm-5">
-    <div>
-        <h4>Become an Auteur, and share your love of film</h4>
-    </div>
-    <div>
-        <p>Create a profile and start reviewing today.</p>
-    </div>
-</div>
-
-
-
-<div class="row">
-    <div class="col">
-        <div class="card-columns">
-            <div class="card clickable" *ngFor="let film of popularFilms" (click)="viewFilm(film.id)">
-                <img class="card-img-top" src="{{film.url}}" alt="Image for film">
-                <div class="card-body" id="{{film.title}}">{{film.title}}</div>
-            </div>
+<div class="container">
+    <div class="card bg-dark text-white">
+        <div class="card-body">
+            <h4 class="card-title">Become an Auteur, and share your love of film</h4>
+            <p class="card-text">Create a profile and start reviewing today.</p>
+            <a href="#!" class="card-link">Card link</a>
+            <a href="#!" class="card-link">Terms of service</a>
         </div>
     </div>
-    <div class="col">
 
+    <div class="row">
+        <div class="col">
+            <h4>Popular films</h4>
+            <div class="card-columns">
+                <div class="card clickable" *ngFor="let film of popularFilms" (click)="viewFilm(film.id)">
+                    <img class="card-img-top" src="{{film.url}}" alt="Image for film">
+                    <div class="card-body" id="{{film.title}}">{{film.title}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <!-- TODO: Helpful reviews -->
+        </div>
     </div>
 </div>
