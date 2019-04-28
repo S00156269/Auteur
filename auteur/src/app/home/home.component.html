@@ -1,20 +1,24 @@
-<div class="d-flex justify-content-center m-sm-5">
-    <div class="card-deck">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Intelligent suggestions.</h4>
-                <p class="card-text">With the power of Google's Machine Learning platform, get recommendations that
-                    suits you more over time.
-                </p>
+<div class="justify-content-start m-sm-5">
+    <div>
+        <h4>Become an Auteur, and share your love of film</h4>
+    </div>
+    <div>
+        <p>Create a profile and start reviewing today.</p>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col">
+        <div class="card-columns">
+            <div class="card clickable" *ngFor="let film of popularFilms" (click)="viewFilm(film.id)">
+                <img class="card-img-top" src="{{film.url}}" alt="Image for film">
+                <div class="card-body" id="{{film.title}}">{{film.title}}</div>
             </div>
         </div>
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Unleash your inner critic.</h4>
-                <p class="card-text">Powered by The Movie DB, share films and TV shows with your friends and 
-                    let them know what you think.
-                </p>
-            </div>
-        </div>
+    </div>
+    <div class="col">
+
     </div>
 </div>
