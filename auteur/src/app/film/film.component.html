@@ -1,28 +1,34 @@
-<div class="container h-100">
-    <div class="row align-items-center">
-        <div class="col-md-6 card" *ngIf="loaded">
-            <div class="ml-2">
+<!-- Loading spinner -->
+<div class="spinner-border" *ngIf="!loaded">
+    <span class="sr-only">Loading...</span>
+</div>
 
-                <img class="card-img-top" src="{{film.url}}" alt="Image for film or tv show">
-                <div class="card-body">
-                    <h4 class="card-title">{{film.original_title}} - {{film.vote_average}}</h4>
-                    <h6 class="card-subtitle mb-2 text-muted">{{film.release_date}}</h6>
+<div class="container" *ngIf="loaded">
+    <div class="row">
+        <!-- Film -->
+        <div class="d-flex flex-lg-column">
+            <div class="card">
+                <img class="card-img mx-auto" src="{{film.url}}" alt="Image for film or tv show">
+                <div class="card-img-top">
+                    <h4 class="card-title">{{film.original_title}}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">Release date: {{film.release_date}}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Average score: {{film.vote_average}}/10</h6>
                     <p class="card-text">
                         {{film.overview}}
                     </p>
                 </div>
             </div>
-
         </div>
-        <div class="col-md-6 card" *ngIf="loaded">
-            <div class="ml-2">
+        <!-- Review -->
+        <div class="d-flex flex-lg-column">
+            <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Write a review for {{film.original_title}}.</h4>
                     <form>
                         <div class="form-group">
                             <label for="reviewContent"></label>
-                            <textarea type="text" name="reviewContent" class="form-control review" placeholder="Enter review content"
-                                [(ngModel)]="reviewContent" required></textarea>
+                            <textarea type="text" name="reviewContent" class="form-control review"
+                                placeholder="Write your review here..." [(ngModel)]="reviewContent" required></textarea>
                         </div>
                         <div class="form-group">
                             <label for="reviewRating">Rating</label>
@@ -30,12 +36,12 @@
                                 [(ngModel)]="reviewRating" required>
                         </div>
                         <div class="d-flex justify-content-sm-between mt-sm-3">
-                            <button type="submit" class="btn btn-success" (click)='createReview()'>Finish review</button>
+                            <button type="submit" class="btn btn-success" (click)='createReview()'>Submit
+                                review</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
 </div>

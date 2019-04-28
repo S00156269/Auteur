@@ -1,20 +1,24 @@
 .container {
-    max-width: 800px;
+    max-width: 1200px;
     padding: 2vh;
+}
 
+.flex-lg-column {
+    padding: 2vh;
+}
+
+.card-img {
+    max-width: 65%;
+    max-height: 30vw;
+    object-fit: cover;
+    padding-bottom: 2vh;
 }
 
 .card {
-    max-width: 300px;
+    max-width: 600px;
     padding: 2vh;
-
 }
 
-.review{
-    height: 200px;
-}
-
-.col {
-    padding: 2vh;
-
+.review {
+    min-height: 200px;
 }
