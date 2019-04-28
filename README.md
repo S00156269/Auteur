@@ -1,5 +1,5 @@
 # Auteur
-A movie review site, where you can review films, get intelligent recommendations, and share with your friends.
+A place where you can review films.
 
-Built with Angular, styled with Angular Material.
+Built with Angular, styled with Bootstrap 4.
 Powered by [The Movie DB](https://www.themoviedb.org/).
