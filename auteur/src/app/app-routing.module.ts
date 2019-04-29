@@ -8,6 +8,7 @@ import { SearchComponent } from './search/search.component';
 import { FilmComponent } from './film/film.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { AuthService } from 'src/shared/auth.service';
+import { ReviewComponent } from './review/review.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'edit-profile', component: EditProfileComponent, canActivate: [AuthService]},
   { path: 'search', component: SearchComponent},
   { path: 'film', component: FilmComponent},
+  { path: 'review', component: ReviewComponent},
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
 ];
 

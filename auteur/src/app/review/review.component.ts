@@ -2,48 +2,63 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Review } from '../review';
 import { Reviewer } from '../reviewer';
 import { DataService } from 'src/shared/data.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { TmdbService } from 'src/shared/tmdb.service';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AuthService } from 'src/shared/auth.service';
 
 @Component({
   selector: 'app-review',
   templateUrl: './review.component.html',
   styleUrls: ['./review.component.css']
 })
-export class ReviewComponent{
+export class ReviewComponent implements OnInit{
   // Assembling the review in order to send it off via the data service
   reviewContent: string;
   reviewRating: number;
   review: Review;
   reviewer: Reviewer;
-  @Input() movieID: string;
-  @Input() movieName: string;
+  reviewId: string;
+  filmId: string;
+  film: any;
+  reviewLoaded: boolean;
+  filmLoaded: boolean;
 
-  // If the user is logged in, get user ID. Otherwise, send to login
-  constructor(private data: DataService, private route: Router) {
-    if(this.data.iuid!=null) {
-      this.data.getUser(this.data.iuid).subscribe(value => {
-        this.reviewer = value;
-      });
-    }
-    else {
-      this.route.navigate(['login']);
-    }
-   }
-
-   createReview(content, rating) {
-    this.review.authorName = this.reviewer.name;
-    this.review.content = this.reviewContent;
-    this.review.movieID = this.movieID;
-    this.review.score = this.reviewRating;
-    this.review.movieName = this.movieName;
-    this.reviewer.reviews.push(this.review); //adds the new review to the array, then patches the array
-    this.data.createReview(this.formatPost(), this.data.iuid, this.movieID);
+  constructor(private router: Router, private route: ActivatedRoute, private tmdb: TmdbService, private data: DataService, private fbd: AngularFirestore, private auth: AuthService) {
+  
   }
 
-  formatPost(): any {
-    return {
-      "Reviews": this.reviewer.reviews
-    }
+  ngOnInit() {
+    this.reviewLoaded = false;
+    this.filmLoaded = false;
+
+    this.route.queryParamMap.subscribe(queryParams => {
+      this.reviewId = queryParams.get("reviewId"),
+      this.filmId = queryParams.get("filmId")
+    });
+    this.getData();
+    
   }
 
+  getData() {
+    this.data.getReview(this.filmId, this.reviewId).subscribe(review => {
+      this.review = review;
+      this.reviewLoaded = true;
+    })
+
+    this.tmdb.getSingleFilm(this.filmId).subscribe(film => {
+      this.film = film;
+      this.film["url"] = "https://image.tmdb.org/t/p/w1280" + this.film["poster_path"];
+      this.filmLoaded = true;
+    });
+  }
+
+  loaded(){
+    if(this.filmLoaded && this.reviewLoaded){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
 }

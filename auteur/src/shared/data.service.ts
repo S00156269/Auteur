@@ -26,10 +26,10 @@ export class DataService {
   getUser(iuid): Observable<any> {
     return this.http.get('https://auteur-1541508408043.firebaseio.com/users/' + iuid + '.json');
   }
-  // Create a review
-  createReview(data, uid, filmID) {
-    this.http.patch('https://auteur-1541508408043.firebaseio.com/users/' + uid + ".json", data).subscribe(res => { console.log(res) });
-    this.http.patch('https://auteur-1541508408043.firebaseio.com/films/' + filmID + ".json", data).subscribe(res => { console.log(res) });
+  // Create a review (refreshes if it writes sucessfuly to film)
+  createReview(data, uid, filmID, reviewId) {
+    this.http.patch('https://auteur-1541508408043.firebaseio.com/users/' + uid + "/Reviews/" + reviewId + ".json", data);
+    return this.http.patch('https://auteur-1541508408043.firebaseio.com/films/' + filmID + "/Reviews/" + reviewId + ".json", data);
   }
   // Get all reviews for specific film
   getReviewsForFilm(filmID): Observable<any> {
@@ -38,5 +38,9 @@ export class DataService {
   // Get users' reviews
   getReviewsForProfile(userID): Observable<any> {
     return this.http.get('https://auteur-1541508408043.firebaseio.com/users/' + userID + "/Reviews" + ".json");
+  }
+  getReview(filmId, reviewId): Observable<any> {
+    console.log('https://auteur-1541508408043.firebaseio.com/films/' + filmId + "/Reviews/" + reviewId + ".json");
+    return this.http.get('https://auteur-1541508408043.firebaseio.com/films/' + filmId + "/Reviews/" + reviewId + ".json");
   }
 }

@@ -19,7 +19,6 @@ export class TmdbService {
 
   public getSingleFilm(value): Observable<any> {
     var request = this._tmdbUrlSingle + value + "?" +environment.tmdbAPI + '&language=en-US&page=1';
-    console.log(request);
     return this._http.get<any>(request);
   }
 
