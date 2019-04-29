@@ -8,9 +8,9 @@
 }
 
 .card-img {
-    max-width: 65%;
-    max-height: 30vw;
-    object-fit: cover;
+    min-width: 50%;
+    min-height: 30vw;
+    object-fit: contain;
     padding-bottom: 2vh;
 }
 
