@@ -5,16 +5,43 @@
   </div>
 </div>
 
-<div class="d-flex flex-lg-column">
-    <div class="card" *ngIf="loaded()">
+<div class="container">
+  <div class="row">
+    <div class="d-flex flex-lg-column">
+      <div class="card text-white bg-dark" *ngIf="loaded()">
         <img class="card-img mx-auto" src="{{film.url}}" alt="Image for film or tv show">
         <div class="card-img-top">
-            <h4 class="card-title">{{review.movieName}} review - {{review.score}}/10</h4>
-            <h6 class="card-subtitle mb-2 text-muted">{{review.authorName}}</h6>
-            <h6 class="card-subtitle mb-2 text-muted">{{review.date | date:'short'}}</h6>
-            <p class="card-text">
-                {{review.content}}
-            </p>
+          <h4 class="card-title">{{review.movieName}} review - {{recommendedStatus}}
+            <i class="material-icons" *ngIf="recommended">thumb_up</i>
+            <i class="material-icons" *ngIf="!recommended">thumb_down</i>
+          </h4>
+          <h6 class="card-subtitle mb-2">{{review.authorName}}</h6>
+          <h6 class="card-subtitle mb-2">{{review.date | date:'short'}}</h6>
+          <p class="card-text">
+            {{review.content}}
+          </p>
         </div>
+      </div>
     </div>
+    <div class="d-flex flex-lg-column">
+      <div class="card text-white bg-dark">
+        <h5 class="card-title text-white">Comments</h5>
+        <p class="card-subtitle text-white" *ngIf="!noComments">Be the first to write a comment.</p>
+        <ul class="list-group list-group-flush" *ngIf="noComments">
+          <app-comment [commentData]="commentData" class="comment"></app-comment>
+        </ul>
+      </div>
+      <div class="card text-white bg-dark">
+        <h5 class="text-white">Write a comment</h5>
+        <form>
+          <div class="form-group" *ngIf="isLoggedIn()">
+            <label for="commentContent"></label>
+            <textarea type="text" name="commentContent" class="form-control commentInput"
+              placeholder="Write your comment here..." [(ngModel)]="reviewContent" required></textarea>
+          </div>
+          <button class="btn btn-outline-primary my-2 my-sm-0 navbar-btn" (click)="submitComment()" type="submit">Submit comment</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>

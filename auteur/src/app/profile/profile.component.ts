@@ -1,33 +1,48 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/shared/data.service';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { AuthService } from 'src/shared/auth.service';
+import { HttpClient } from '@angular/common/http';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent {
-  currentReviewer: any;
+export class ProfileComponent implements OnInit {
+  currentReviewer: Observable<any>;
   loaded: boolean;
   reviews: any[];
+  hasReviews: boolean;
+  iuid: string;
 
-  constructor(private dataService: DataService) {
-    this.loaded=false;
+  constructor(private dataService: DataService, private auth: AuthService, private http: HttpClient, private afa: AngularFireAuth) { }
+
+  ngOnInit() {
+    this.loaded = false;
+    this.hasReviews = false;
     this.getReviewer();
   }
 
   private getReviewer(): any {
-    console.log(this.dataService.iuid);
-    this.dataService.getUser(this.dataService.iuid).subscribe(value => {
-      if(value){
-      console.log(this.dataService.iuid),
-      this.currentReviewer = value,
-      console.log(this.currentReviewer),
-      this.reviews = this.currentReviewer.Reviews;
-      this.loaded = true;}
-      else{
-        setTimeout(this.getReviewer(),500);
+    this.afa.authState.subscribe((resp) => {
+      if (resp != null) {
+        if (resp.uid) {
+          this.iuid = resp.uid;
+          console.log(this.iuid);
+          this.dataService.getUser(this.iuid).subscribe(value => {
+            this.currentReviewer = value;
+            console.log(this.currentReviewer);
+            if(this.currentReviewer["reviews"]!=null){
+              this.hasReviews = true;
+            }
+            else{
+              this.reviews = this.currentReviewer["reviews"];
+            };
+            this.loaded = true;
+          });
+        }
       }
     });
   }

@@ -24,11 +24,15 @@ export class FilmComponent implements OnInit {
   reviewer: any;
   reviews: any[] = [];
   reviewId: string;
+  recommend: boolean;
+  hasRecommended: boolean;
+  recommendedStatus: string;
 
   constructor(private router: Router, private route: ActivatedRoute, private tmdb: TmdbService, private data: DataService, private fbd: AngularFirestore, private auth: AuthService) {
   }
 
   ngOnInit() {
+    this.hasRecommended == false;
     this.route.queryParamMap.subscribe(queryParams => {
       this.filmId = queryParams.get("id")
     });
@@ -56,6 +60,24 @@ export class FilmComponent implements OnInit {
     })
   }
 
+  recommendFilm(){
+    // User recommendation
+    this.recommend = true;
+    this.recommendedStatus = "Recommended";
+
+    // If the user has recommended
+    this.hasRecommended = true;
+  }
+
+  dontRecommendFilm(){
+    this.recommend = false;
+    this.hasRecommended = true;
+    this.recommendedStatus = "Not recommended";
+  }
+
+  isRecommended():boolean{
+    return this.hasRecommended;
+  }
   createReview() {
     if (!this.auth.currentUser) {
       this.router.navigate(['/login']);
@@ -65,6 +87,7 @@ export class FilmComponent implements OnInit {
       this.review = new Review;
       this.reviewer.reviews = [];
       this.review.date = Date.now();
+      this.review.recommended = this.recommend;
       this.reviewer.reviews.push(this.review); //adds the new review to the array, then patches the array
       this.data.createReview(this.formatPost(), this.data.iuid, this.filmId, this.reviewId).subscribe(res => {
         this.data.getReviewsForFilm(this.filmId).subscribe(res => {
@@ -74,6 +97,7 @@ export class FilmComponent implements OnInit {
           }
         });
       });
+      // Clear the textboxes
       this.reviewContent = "";
       this.reviewRating = null;
     }
@@ -90,7 +114,7 @@ export class FilmComponent implements OnInit {
       "reviewer": this.data.iuid,
       "reviewerName": this.reviewer.reviewerName,
       "content": this.reviewContent,
-      "score": this.reviewRating,
+      "recommended": this.recommend,
       "date": this.review.date,
       "movieId": this.filmId,
       "movieName": this.film.original_title

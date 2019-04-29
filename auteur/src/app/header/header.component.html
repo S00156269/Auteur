@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-inverse navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" routerLink="/home">
     <img src="./assets/favicon.png" width="30" height="30" class="d-inline-block align-top" >
     Auteur
@@ -28,7 +28,7 @@
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" name="searchBar" type="search" placeholder="Search films, tv..." [(ngModel)]="searchTerm" required>
-      <button class="btn btn-outline-dark my-2 my-sm-0" (click)="search()" type="submit">Search</button>
+      <button class="btn btn-outline-primary my-2 my-sm-0 navbar-btn" (click)="search()" type="submit">Search</button>
     </form>
   </div>
 </nav>

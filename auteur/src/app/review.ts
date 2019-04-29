@@ -5,6 +5,6 @@ export class Review {
     authorName: string;
     authorID: string;
     content: string;
-    score: number;
+    recommended: boolean;
     date: number;
 }

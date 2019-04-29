@@ -1,6 +1,30 @@
+.container {
+    max-width: 1600px;
+    padding: 1vh;
+}
+
+.flex-lg-column {
+    padding: 2vh;
+}
+
 .card-img {
     max-width: 50%;
     max-height: 30vw;
     object-fit: contain;
     padding-bottom: 2vh;
+}
+
+.card {
+    max-width: 600px;
+    min-width: 30vw;
+    padding: 2vh;
+    margin: 1vh;
+}
+
+.comment {
+    margin: 1vh;
+}
+
+.commentInput{
+    min-height: 3vh;
 }

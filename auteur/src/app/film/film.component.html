@@ -8,12 +8,12 @@
     <div class="row">
         <!-- Film -->
         <div class="d-flex flex-lg-column">
-            <div class="card">
+            <div class="card text-white bg-dark">
                 <img class="card-img mx-auto" src="{{film.url}}" alt="Image for film or tv show">
                 <div class="card-img-top">
                     <h4 class="card-title">{{film.original_title}}</h4>
-                    <h6 class="card-subtitle mb-2 text-muted">Release date: {{film.release_date}}</h6>
-                    <h6 class="card-subtitle mb-2 text-muted">Average score: {{film.vote_average}}/10</h6>
+                    <h6 class="card-subtitle mb-2">Release date: {{film.release_date}}</h6>
+                    <h6 class="card-subtitle mb-2">Average score: {{film.vote_average}}/10</h6>
                     <p class="card-text">
                         {{film.overview}}
                     </p>
@@ -22,22 +22,28 @@
         </div>
         <!-- Write a Review -->
         <div class="d-flex flex-lg-column">
-            <div class="card">
+            <div class="card text-white bg-dark">
                 <div class="card-body">
                     <h4 class="card-title">Write a review for {{film.original_title}}.</h4>
                     <form>
                         <div class="form-group" *ngIf="isLoggedIn()">
                             <label for="reviewContent"></label>
-                            <textarea type="text" name="reviewContent" class="form-control"
+                            <textarea type="text" name="reviewContent" class="form-control reviewInput"
                                 placeholder="Write your review here..." [(ngModel)]="reviewContent" required></textarea>
                         </div>
-                        <div class="form-group"*ngIf="isLoggedIn()">
-                            <label for="reviewRating">Rating</label>
-                            <input type="number" name="reviewRating" class="form-control"
-                                placeholder="Rating (out of 10)" [(ngModel)]="reviewRating" min="0" required>
+                        <div class="form-group" *ngIf="isLoggedIn()">
+                            <label for="reviewRating">Recommend it?</label>
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-success thumbs-btn" (click)="recommendFilm()">Recommend<i
+                                        class="material-icons icon">thumb_up</i></button>
+                                <button class="btn btn-danger thumbs-btn" (click)="dontRecommendFilm()">Don't
+                                    recommend<i class="material-icons icon">thumb_down</i></button>
+                            </div>
                         </div>
                         <div class="d-flex justify-content-sm-between mt-sm-3" *ngIf="isLoggedIn()">
-                            <button type="submit" class="btn btn-success" (click)='createReview()'>Submit
+                            <p class="card-subtitle" *ngIf="!hasRecommended">You can submit once you've selected one of
+                                the options.</p>
+                            <button type="submit" class="btn btn-outline-primary" (click)='createReview()' *ngIf="hasRecommended">Submit
                                 review</button>
                         </div>
                         <div class="d-flex justify-content-sm-between mt-sm-3" *ngIf="!isLoggedIn()">
@@ -50,15 +56,19 @@
         </div>
     </div>
     <!-- Reviews -->
-    <div class="row">
+    <div class="row" *ngIf="loaded">
         <div class="d-flex flex-lg-column">
-            <h5>Reviews</h5>
+            <h4 class="text-white">Reviews</h4>
             <div class="card-columns">
-                <div class="review card clickable" *ngFor="let review of reviews">
+                <div class="review card text-white bg-dark clickable" *ngFor="let review of reviews">
                     <div class="media" (click)="viewReview(review)">
                         <img class="d-flex mr-3 review-img" src="{{film.url}}" alt="Image for film or tv show">
                         <div class="media-body">
-                            <h5 class="mt-0">{{review.movieName}} review - {{review.score}}/10 </h5>
+                            <h5 class="mt-0">{{review.movieName}} review</h5>
+                            <h4>{{recommendedStatus}}
+                                <i class="material-icons" *ngIf="recommended">thumb_up</i>
+                                <i class="material-icons" *ngIf="!recommended">thumb_down</i>
+                            </h4>
                             <p>{{review.content}}</p>
                             <h6>{{review.authorName}}</h6>
                             <h6>{{review.date | date:'short'}}</h6>

@@ -8,9 +8,9 @@
 
     <div class="row">
         <div class="col">
-            <h4>Popular films</h4>
+            <h4 class="text-white">Popular films</h4>
             <div class="card-columns">
-                <div class="card clickable" *ngFor="let film of popularFilms" (click)="viewFilm(film.id)">
+                <div class="card clickable text-white bg-dark" *ngFor="let film of popularFilms" (click)="viewFilm(film.id)">
                     <img class="card-img-top" src="{{film.url}}" alt="Image for film">
                     <div class="card-body" id="{{film.title}}">{{film.title}}</div>
                 </div>

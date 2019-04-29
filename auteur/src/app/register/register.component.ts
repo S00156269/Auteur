@@ -3,6 +3,9 @@ import { FormGroup } from '@angular/forms';
 import { AuthService } from 'src/shared/auth.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { DataService } from 'src/shared/data.service';
+import { Reviewer } from '../reviewer';
+import { Review } from '../review';
 
 @Component({
   selector: 'app-register',
@@ -17,8 +20,12 @@ export class RegisterComponent {
   confirmEmail: string;
   public invalid: boolean;
   error: string;
+  bio: string;
+  name:string;
+  reviewer: Reviewer;
+  result: any;
 
-  constructor(public authService: AuthService, public router: Router) {
+  constructor(public authService: AuthService, public router: Router, public data: DataService) {
     this.invalid = false;
   }
 
@@ -33,7 +40,22 @@ export class RegisterComponent {
   }
 
   signUp() {
-    this.authService.signup(this.email, this.password).catch(err => { this.error = err });
-    //this.router.navigate(['editprofile']);
+    this.reviewer = new Reviewer;
+    this.reviewer.bio = this.bio;
+    this.reviewer.name = this.name;
+    this.reviewer.reviews = [];
+    this.authService.signup(this.email, this.password).then(value => {
+      this.data.createUser(value.user.uid, this.formatPost());
+      this.router.navigate(['/edit-profile']);
+    });
   }
+
+  formatPost(): any {
+    return {
+      "name": this.reviewer.name,
+      "bio": this.reviewer.bio,
+      "reviews": []
+    }
+  }
+
 }

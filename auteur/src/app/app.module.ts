@@ -19,6 +19,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ReviewComponent } from './review/review.component';
 import { SearchComponent } from './search/search.component';
 import { FilmComponent } from './film/film.component';
+import { CommentComponent } from './comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { FilmComponent } from './film/film.component';
     ReviewComponent,
     SearchComponent,
     FilmComponent,
+    CommentComponent,
   ],
   imports: [
     BrowserModule,

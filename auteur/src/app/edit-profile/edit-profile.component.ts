@@ -12,28 +12,40 @@ export class EditProfileComponent implements OnInit {
   name: string;
   bio: string;
   reviewer: Reviewer;
+  loaded:boolean;
   constructor(private data: DataService, private router: Router) { }
 
   ngOnInit() {
+    this.loaded = false;
+    this.getReviewer();
+    this.name = this.reviewer.name;
+    this.bio = this.reviewer.bio;
+  }
+  
+  private getReviewer(): any {
+    console.log(this.data.iuid);
+    this.data.getUser(this.data.iuid).subscribe(value => {
+      this.reviewer = value.result;
+      this.loaded = true;
+    });
+  }
+
+  returnToProfile(){
+    this.router.navigate(['profile']);
   }
 
   createUserProfile() {
-    this.reviewer = new Reviewer;
     this.reviewer.name = this.name;
     this.reviewer.bio = this.bio;
-    this.reviewer.faveMovies = [];
-    this.reviewer.faveGenres = [];
-    this.data.createUser(this.formatPost(this.reviewer)); //sends it off to the service
-    this.router.navigate(['profile']);
+    this.data.createUser(this.data.iuid, this.formatPost(this.reviewer)); //sends it off to the service
+    this.router.navigate(['/profile']);
   }
 
   formatPost(user: Reviewer): any {
     return {
-      "Name": user.name,
-      "Bio": user.bio,
-      "FaveGenres": user.faveGenres,
-      "FaveMovies": user.faveMovies,
-      "Reviews": user.reviews
+      "name": user.name,
+      "bio": user.bio,
+      "reviews": user.reviews
     }
   }
 }

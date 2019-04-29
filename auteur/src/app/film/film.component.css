@@ -23,6 +23,21 @@
     margin: 2vh;
 }
 
+.reviewInput{
+    min-height: 300px;
+}
+
 .review-img {
     max-width: 64px;
+}
+
+.thumbs-btn {
+    vertical-align: middle;
+    line-height: 2vh;
+    padding: 1vh;
+}
+
+.icon{
+    vertical-align: middle;
+    margin-left: 1vh;
 }
